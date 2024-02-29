@@ -36,7 +36,7 @@ module Net
 				# Returns the account credentials in the form of a http
 				# query string for use by other gateway services
 				def to_http_query
-					URI.encode("username=#{@username}&password=#{@password}")
+					URI.encode_www_form_component("username=#{@username}&password=#{@password}")
 				end
 			end
 

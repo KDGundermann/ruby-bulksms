@@ -45,7 +45,7 @@ module Net
 						'concat_text_sms_max_parts' => @concat_max_parts
 					}
 					query_string = params.collect { |x, y| "#{x}=#{y}" }.join('&')
-					URI.encode(query_string)
+					URI.encode_www_form_component(query_string)
 				end
 			end
 			

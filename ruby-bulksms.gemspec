@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.description = "Integrating SMS services into RubyOnRails applications using BulkSMS gateway"
   s.has_rdoc = true
   s.authors  = ["Basayel Said"]
+  s.required_ruby_version = '>= 2.7.0'
   s.files    = [ 
                 "ruby-bulksms.gemspec", 
                 "README.rdoc",
