@@ -31,7 +31,7 @@ module Net
 
 			class Service
 				# The port the message service rus on
-				MESSAGE_SERVICE_PORT = 80 #5567
+				MESSAGE_SERVICE_PORT = 443
 
 				# Path to the message service gateway
 				MESSAGE_SERVICE_PATH = '/eapi/submission/send_sms/2/2.0'
@@ -50,7 +50,7 @@ module Net
 				# Sends the given Message object to the gateway for delivery
 				def send_message(msg)
 					payload = [@account.to_http_query, msg.to_http_query].join('&')
-					Net::HTTP.start(Service.bulksms_gateway(@country), MESSAGE_SERVICE_PORT) do |http|
+					Net::HTTP.start(Service.bulksms_gateway(@country), MESSAGE_SERVICE_PORT, use_ssl: true) do |http|
 						resp = http.post(MESSAGE_SERVICE_PATH, payload)
 						Response.parse(resp)
 					end
@@ -58,7 +58,7 @@ module Net
         #Openning single connection & sending an array of message objects
         def send_multiple(messages)
           responses=[]
-          Net::HTTP.start(Service.bulksms_gateway(@country), MESSAGE_SERVICE_PORT) do |http|
+          Net::HTTP.start(Service.bulksms_gateway(@country), MESSAGE_SERVICE_PORT, use_ssl: true) do |http|
             messages.each do |msg|
               payload = [@account.to_http_query, msg.to_http_query].join('&')
               resp = http.post(MESSAGE_SERVICE_PATH, payload)
