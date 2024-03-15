@@ -52,7 +52,7 @@ module Net
 					payload = [@account.to_http_query, msg.to_http_query].join('&')
 					Net::HTTP.start(Service.bulksms_gateway(@country), MESSAGE_SERVICE_PORT) do |http|
 						resp = http.post(MESSAGE_SERVICE_PATH, payload)
-						Response.parse(resp.body)
+						Response.parse(resp)
 					end
 				end
         #Openning single connection & sending an array of message objects
@@ -62,7 +62,7 @@ module Net
             messages.each do |msg|
               payload = [@account.to_http_query, msg.to_http_query].join('&')
               resp = http.post(MESSAGE_SERVICE_PATH, payload)
-              responses << Response.parse(resp.body)
+              responses << Response.parse(resp)
             end
           end
           responses

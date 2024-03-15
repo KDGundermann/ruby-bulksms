@@ -12,9 +12,13 @@ module Net
 					@batch_id = batch_id
 				end
 
-				def self.parse(response_text)
-					tokens = response_text.split('|')
-					self.new tokens[0].to_i, tokens[1], tokens[2].to_i
+				def self.parse(response)
+					if response.code == "200"
+						tokens = response.body.split('|')
+						self.new tokens[0].to_i, tokens[1], tokens[2].to_i
+					else
+						self.new response.code, response.message, 0
+					end
 				end
 
 				# Was the original request successful?
