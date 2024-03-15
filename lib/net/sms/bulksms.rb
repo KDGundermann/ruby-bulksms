@@ -87,16 +87,10 @@ module Net
         # Returns the gateway URL for the chosen country
         def self.bulksms_gateway(country)
           case country
-          when 'uk'
-            'www.bulksms.co.uk'
-          when 'usa'
-            'usa.bulksms.com'
-          when 'international'
-            'bulksms.vsms.net'
           when 'safrica'
-            'bulksms.2way.co.za'
-          when 'spain'
-            'bulksms.com.es'
+            'api-legacy1.bulksms.com'
+          else
+            'api-legacy2.bulksms.com'
           end
         end
       end

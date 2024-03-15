@@ -1,3 +1,9 @@
+* 0.4.6
+EAPI endpoints are now deprecated. Switching to api-legacy2.bulksms.com
+
+* 0.4.4
+required_ruby_version = '>= 2.7.0'
+
 * 0.4.1
 Changing the default country settings to be international instead of uk
 
